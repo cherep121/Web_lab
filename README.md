@@ -1,2 +1,2 @@
-# $${\color{#ff00ff}Web_lab (hex-код)}$$
+# $${\color{#ff00ff}Web-lab }$$
 Лабороторная работа №1
