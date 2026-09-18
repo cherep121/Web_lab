@@ -16,10 +16,9 @@
             <span class="logo__text">Антон Чистюхин</span>
         </a>
 
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
-        <label for="nav-toggle" class="nav-toggle-label" aria-label="Открыть меню">
+        <button type="button" class="nav-toggle-btn" aria-label="Открыть меню">
             <span></span><span></span><span></span>
-        </label>
+        </button>
 
         <nav class="nav">
             <ul class="nav__list">
@@ -214,6 +213,19 @@
         </ul>
     </div>
 </footer>
+
+<button type="button" id="scroll-top" class="scroll-top" aria-label="Наверх">↑</button>
+
+<div class="modal" id="modal">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__content">
+        <button type="button" class="modal__close" data-close aria-label="Закрыть">×</button>
+        <div class="modal__body" id="modal-body"></div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 </html>
