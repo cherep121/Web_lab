@@ -437,9 +437,6 @@ h1, h2, h3 { line-height: 1.25; margin: 0 0 .6em; }
     }
 }
 
-/* ============================================================
-   Кнопка "Вверх"
-   ============================================================ */
 .scroll-top {
     position: fixed;
     right: 24px;
@@ -518,5 +515,82 @@ h1, h2, h3 { line-height: 1.25; margin: 0 0 .6em; }
     padding: 40px 0;
 }
 .portfolio__error {
+    color: #c0392b;
+}
+
+.modal__title {
+    font-size: 1.4rem;
+    margin: 0 0 6px;
+}
+.modal__subtitle {
+    color: var(--text-muted);
+    font-size: .9rem;
+    margin: 0 0 22px;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.form-group label {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--text);
+}
+.form-group .required { color: #c0392b; }
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: .95rem;
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    resize: vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(95, 168, 184, .18);
+}
+.form-group input.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: #c0392b;
+}
+
+.form-error {
+    font-size: .8rem;
+    color: #c0392b;
+    min-height: 1em;
+}
+
+.contact-form__submit { align-self: flex-start; }
+.contact-form__submit:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.form-status {
+    font-size: .9rem;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    display: none;
+}
+.form-status.is-success {
+    display: block;
+    background: #e8f6ef;
+    color: #1e7a4c;
+}
+.form-status.is-error {
+    display: block;
+    background: #fdecea;
     color: #c0392b;
 }
