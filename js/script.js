@@ -310,3 +310,59 @@ const skillsData = [
     renderDots();
     goTo(0);
     startAutoplay();
+
+    const $navLinks = $('.nav__link');
+    const $sections = $('section[id]'); 
+
+    function highlightNav() {
+        const scrollPos = $(window).scrollTop() + 100;
+        let currentId = '';
+
+        $sections.each(function () {
+            const $section = $(this);
+            const sectionTop = $section.offset().top;
+            const sectionBottom = sectionTop + $section.outerHeight();
+
+            if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                currentId = $section.attr('id');
+                return false; // break
+            }
+        });
+
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 5) {
+            currentId = $sections.last().attr('id');
+        }
+
+        $navLinks.removeClass('is-active');
+        if (currentId) {
+            $navLinks.filter(`[href="#${currentId}"]`).addClass('is-active');
+        }
+    }
+
+    let scrollTimeout;
+    $(window).on('scroll', function () {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(function () {
+            highlightNav();
+            toggleScrollTopBtn();
+            scrollTimeout = null;
+        }, 100);
+    });
+
+    highlightNav();
+
+    const $scrollTopBtn = $('#scroll-top');
+
+    function toggleScrollTopBtn() {
+        if ($(window).scrollTop() > 400) {
+            $scrollTopBtn.addClass('is-visible');
+        } else {
+            $scrollTopBtn.removeClass('is-visible');
+        }
+    }
+
+    $scrollTopBtn.on('click', function () {
+        $('html, body').animate({ scrollTop: 0 }, 600);
+    });
+
+    toggleScrollTopBtn();
