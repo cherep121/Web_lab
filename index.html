@@ -80,54 +80,23 @@
     </section>
 
     <section class="section section--alt" id="skills">
-        <div class="container">
-            <h2 class="section__title">Навыки</h2>
-            <div class="skills">
-                <article class="skill">
-                    <header class="skill__head">
-                        <span class="skill__name">HTML5</span>
-                        <span class="skill__percent">90%</span>
-                    </header>
-                    <div class="skill__bar"><span style="width: 90%"></span></div>
-                </article>
-                <article class="skill">
-                    <header class="skill__head">
-                        <span class="skill__name">CSS3 / SCSS</span>
-                        <span class="skill__percent">85%</span>
-                    </header>
-                    <div class="skill__bar"><span style="width: 85%"></span></div>
-                </article>
-                <article class="skill">
-                    <header class="skill__head">
-                        <span class="skill__name">JavaScript</span>
-                        <span class="skill__percent">75%</span>
-                    </header>
-                    <div class="skill__bar"><span style="width: 75%"></span></div>
-                </article>
-                <article class="skill">
-                    <header class="skill__head">
-                        <span class="skill__name">Node.js / Express</span>
-                        <span class="skill__percent">65%</span>
-                    </header>
-                    <div class="skill__bar"><span style="width: 65%"></span></div>
-                </article>
-                <article class="skill">
-                    <header class="skill__head">
-                        <span class="skill__name">MongoDB</span>
-                        <span class="skill__percent">60%</span>
-                    </header>
-                    <div class="skill__bar"><span style="width: 60%"></span></div>
-                </article>
-                <article class="skill">
-                    <header class="skill__head">
-                        <span class="skill__name">Git / GitHub</span>
-                        <span class="skill__percent">75%</span>
-                    </header>
-                    <div class="skill__bar"><span style="width: 75%"></span></div>
-                </article>
+    <div class="container">
+        <h2 class="section__title">Навыки</h2>
+
+        <div class="skills-carousel">
+            <button type="button" class="carousel-btn carousel-btn--prev" id="skills-prev" aria-label="Предыдущий">‹</button>
+
+            <div class="skills-carousel__viewport">
+                <div class="skills-carousel__track" id="skills-track">
+                </div>
             </div>
+
+            <button type="button" class="carousel-btn carousel-btn--next" id="skills-next" aria-label="Следующий">›</button>
         </div>
-    </section>
+
+        <div class="carousel-dots" id="skills-dots"></div>
+    </div>
+</section>
 
     <section class="section" id="portfolio">
         <div class="container">

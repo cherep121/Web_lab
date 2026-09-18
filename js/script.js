@@ -199,3 +199,114 @@ const $modal = $('#contact-modal');
             $submit.prop('disabled', false).text('Отправить');
         });
     });
+
+const skillsData = [
+        { name: 'HTML5',              percent: 90 },
+        { name: 'CSS3 / SCSS',        percent: 85 },
+        { name: 'JavaScript',         percent: 75 },
+        { name: 'Node.js / Express',  percent: 65 },
+        { name: 'MongoDB',            percent: 60 },
+        { name: 'Git / GitHub',       percent: 75 }
+    ];
+
+    const $track = $('#skills-track');
+    const $dots  = $('#skills-dots');
+
+    $.each(skillsData, function (i, skill) {
+        const slideHtml = `
+            <div class="skills-carousel__slide">
+                <article class="skill">
+                    <header class="skill__head">
+                        <span class="skill__name">${skill.name}</span>
+                        <span class="skill__percent">${skill.percent}%</span>
+                    </header>
+                    <div class="skill__bar"><span style="width: ${skill.percent}%"></span></div>
+                </article>
+            </div>
+        `;
+        $track.append(slideHtml);
+    });
+
+    let slidesPerView = getSlidesPerView();
+    let currentIndex = 0;
+    const totalSlides = skillsData.length;
+    let autoplayTimer = null;
+
+    function getSlidesPerView() {
+        const w = $(window).width();
+        if (w <= 767) return 1;
+        if (w <= 1023) return 2;
+        return 3;
+    }
+
+    function getMaxIndex() {
+        return Math.max(0, totalSlides - slidesPerView);
+    }
+
+    function renderDots() {
+        $dots.empty();
+        const count = getMaxIndex() + 1;
+        for (let i = 0; i < count; i++) {
+            const activeClass = i === currentIndex ? ' is-active' : '';
+            $dots.append(`<button type="button" class="carousel-dot${activeClass}" data-index="${i}" aria-label="Слайд ${i + 1}"></button>`);
+        }
+    }
+
+    function goTo(index) {
+        const maxIndex = getMaxIndex();
+        if (index < 0) index = maxIndex;
+        if (index > maxIndex) index = 0;
+
+        currentIndex = index;
+        const slideWidth = 100 / slidesPerView;
+        const offset = -currentIndex * slideWidth;
+        $track.css('transform', `translateX(${offset}%)`);
+
+        $dots.find('.carousel-dot').removeClass('is-active')
+             .eq(currentIndex).addClass('is-active');
+    }
+
+    function nextSlide() { goTo(currentIndex + 1); }
+    function prevSlide() { goTo(currentIndex - 1); }
+
+    $('#skills-next').on('click', function () {
+        nextSlide();
+        restartAutoplay();
+    });
+    $('#skills-prev').on('click', function () {
+        prevSlide();
+        restartAutoplay();
+    });
+
+    $dots.on('click', '.carousel-dot', function () {
+        goTo(parseInt($(this).data('index'), 10));
+        restartAutoplay();
+    });
+
+    function startAutoplay() {
+        autoplayTimer = setInterval(nextSlide, 4000);
+    }
+    function stopAutoplay() {
+        clearInterval(autoplayTimer);
+    }
+    function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    $('.skills-carousel').on('mouseenter', stopAutoplay)
+                         .on('mouseleave', startAutoplay);
+
+    $(window).on('resize', function () {
+        const newSlidesPerView = getSlidesPerView();
+        if (newSlidesPerView !== slidesPerView) {
+            slidesPerView = newSlidesPerView;
+            currentIndex = 0;
+            renderDots();
+            goTo(0);
+        }
+    });
+
+    renderDots();
+    goTo(0);
+    startAutoplay();
