@@ -1,0 +1,58 @@
+@use '../utils' as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 62, 80, .6);
+    backdrop-filter: blur(3px);
+  }
+
+  &__content {
+    position: relative;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: 32px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: var(--shadow-hover);
+    z-index: 1;
+    transition: background-color $transition;
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    font-size: rem(28px);
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: color $transition;
+
+    &:hover {
+      color: var(--color-accent-dark);
+    }
+  }
+
+  &__title {
+    font-size: rem(22px);
+    margin: 0 0 6px;
+  }
+
+  &__subtitle {
+    color: var(--color-text-muted);
+    font-size: rem(14px);
+    margin: 0 0 22px;
+  }
+}

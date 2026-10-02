@@ -1,0 +1,98 @@
+@use '../utils' as *;
+
+.hero {
+  padding: 90px 0 70px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(143, 199, 209, .25), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #eef3f6 100%);
+  transition: background $transition;
+
+  [data-theme='dark'] & {
+    background:
+      radial-gradient(circle at 20% 10%, rgba(99, 179, 237, .15), transparent 55%),
+      linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  &__text {
+    flex: 1 1 520px;
+  }
+
+  &__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: rem(13px);
+    color: var(--color-accent-dark);
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 1.4rem + 3vw, 3.2rem);
+    margin-bottom: 18px;
+  }
+
+  &__subtitle {
+    color: var(--color-text-muted);
+    font-size: rem(17px);
+    max-width: 520px;
+    margin-bottom: 28px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  &__avatar {
+    flex: 0 0 260px;
+    display: grid;
+    place-items: center;
+
+    img {
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      border: 6px solid var(--color-surface);
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      transition: border-color $transition;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    padding: 70px 0 60px;
+
+    &__inner {
+      gap: 40px;
+    }
+
+    &__avatar {
+      flex-basis: 200px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 50px 0 40px;
+    text-align: center;
+
+    &__inner {
+      flex-direction: column-reverse;
+      gap: 28px;
+    }
+
+    &__subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &__actions {
+      justify-content: center;
+    }
+  }
+}

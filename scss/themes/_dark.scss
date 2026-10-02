@@ -1,0 +1,10 @@
+@use '../utils' as *;
+
+[data-theme='dark'] {
+  @each $name, $value in $theme-dark {
+    --color-#{$name}: #{$value};
+  }
+
+  --shadow:       0 6px 20px rgba(0, 0, 0, .4);
+  --shadow-hover: 0 12px 28px rgba(0, 0, 0, .55);
+}

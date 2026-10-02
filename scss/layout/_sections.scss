@@ -1,0 +1,150 @@
+@use '../utils' as *;
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+.section {
+  padding: 80px 0;
+
+  &--alt {
+    background: var(--color-bg-alt);
+    transition: background-color $transition;
+  }
+
+  &__title {
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.2rem);
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+    color: var(--color-text);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 4px;
+      margin: 14px auto 0;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-soft));
+    }
+  }
+
+  @media (max-width: 1023px) {
+    padding: 64px 0;
+  }
+
+  @media (max-width: 767px) {
+    padding: 52px 0;
+
+    &__title {
+      margin-bottom: 32px;
+    }
+  }
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+
+  &__text p {
+    color: var(--color-text-muted);
+  }
+
+  &__achievements {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    transition: background-color $transition;
+
+    li {
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--color-border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+
+  &__loading,
+  &__error {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: rem(16px);
+    padding: 40px 0;
+  }
+
+  &__error {
+    color: var(--color-danger);
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1023px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform $transition, box-shadow $transition, background-color $transition;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  &__icon {
+    font-size: rem(26px);
+  }
+
+  &__label {
+    font-size: rem(13px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+  }
+
+  &__value {
+    font-weight: 600;
+    color: var(--color-accent-dark);
+  }
+}
