@@ -1,0 +1,15 @@
+@use '../utils' as *;
+
+:root {
+  @each $name, $value in $theme-light {
+    --color-#{$name}: #{$value};
+  }
+
+  --radius:       #{$radius};
+  --radius-sm:    #{$radius-sm};
+  --shadow:       #{$shadow};
+  --shadow-hover: #{$shadow-hover};
+  --container:    #{$container-width};
+  --transition:   #{$transition};
+  --font-family:  #{$font-family-base};
+}

@@ -1,0 +1,46 @@
+@use '../utils' as *;
+
+.footer {
+  background: #2c3e50;
+  color: #cfd8e3;
+  padding: 26px 0;
+  transition: background-color $transition;
+
+  [data-theme='dark'] & {
+    background: #0f1419;
+  }
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__copy {
+    margin: 0;
+    font-size: rem(14px);
+  }
+
+  &__links {
+    display: flex;
+    gap: 20px;
+    font-size: rem(14px);
+
+    a {
+      transition: color $transition;
+
+      &:hover {
+        color: var(--color-accent-soft);
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    &__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}

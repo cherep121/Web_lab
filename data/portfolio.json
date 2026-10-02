@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Электронный научный журнал",
+        "description": "Веб-приложение для публикации и поиска научных статей. Node.js, MongoDB, Express.",
+        "image": "images/image.png",
+        "link": "https://github.com/cherep121"
+    },
+    {
+        "title": "Гид по странам мира",
+        "description": "Поиск стран по названию и столице, сравнение и случайная страна. Работа с внешним API. Реализован на языке Python",
+        "image": "images/image2.png",
+        "link": "https://github.com/cherep121"
+    },
+    {
+        "title": "Гид по странам — поиск",
+        "description": "Фильтрация стран по названию, языку и алфавиту. Интерфейс с авторизацией. Реализован на языке JavaScript",
+        "image": "images/image3.png",
+        "link": "https://github.com/cherep121"
+    },
+    {
+        "title": "Weather App",
+        "description": "Погодное приложение: текущая погода и прогноз на 4 дня. API openweathermap.",
+        "image": "images/image4.png",
+        "link": "https://github.com/cherep121"
+    }
+]

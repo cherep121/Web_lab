@@ -1,0 +1,52 @@
+$font-family-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+$line-height-base: 1.6;
+
+$container-width: 1140px;
+$container-padding: 24px;
+
+$radius: 14px;
+$radius-sm: 8px;
+
+$shadow: 0 6px 20px rgba(95, 168, 184, .12);
+$shadow-hover: 0 12px 28px rgba(95, 168, 184, .22);
+
+$transition: .25s ease;
+
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
+
+$theme-light: (
+  bg:           #f5f7fa,
+  bg-alt:       #eef3f6,
+  surface:      #ffffff,
+  border:       #d6e0e8,
+  accent:       #5fa8b8,
+  accent-dark:  #4a8d9c,
+  accent-soft:  #8fc7d1,
+  text:         #2c3e50,
+  text-muted:   #6b7c8c,
+  danger:       #c0392b,
+  success-bg:   #e8f6ef,
+  success-text: #1e7a4c,
+  error-bg:     #fdecea,
+);
+
+$theme-dark: (
+  bg:           #1a202c,
+  bg-alt:       #2d3748,
+  surface:      #2d3748,
+  border:       #4a5568,
+  accent:       #63b3ed,
+  accent-dark:  #4299e1,
+  accent-soft:  #90cdf4,
+  text:         #e2e8f0,
+  text-muted:   #a0aec0,
+  danger:       #fc8181,
+  success-bg:   #22543d,
+  success-text: #9ae6b4,
+  error-bg:     #742a2a,
+);
