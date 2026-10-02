@@ -1,28 +1,48 @@
 $(document).ready(function () {
-    $('.nav-toggle-btn').on('click', function () {
 
+    $('.js-nav-toggle').on('click', function () {
         $('.nav').slideToggle(250);
-
         $(this).toggleClass('is-active');
     });
 
     $('.nav__link').on('click', function () {
         if ($(window).width() <= 767) {
             $('.nav').slideUp(250);
-            $('.nav-toggle-btn').removeClass('is-active');
+            $('.js-nav-toggle').removeClass('is-active');
         }
     });
 
     $(window).on('resize', function () {
         if ($(window).width() > 767) {
             $('.nav').removeAttr('style');
-            $('.nav-toggle-btn').removeClass('is-active');
+            $('.js-nav-toggle').removeClass('is-active');
         }
     });
 
-});
+    const $themeToggle = $('.js-theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
 
-const $portfolioContainer = $('#portfolio-container');
+    // Применяем сохранённую тему при загрузке
+    if (savedTheme === 'dark') {
+        $('html').attr('data-theme', 'dark');
+        $themeToggle.text('☀️');
+    }
+
+    $themeToggle.on('click', function () {
+        const isDark = $('html').attr('data-theme') === 'dark';
+
+        if (isDark) {
+            $('html').removeAttr('data-theme');
+            localStorage.setItem('theme', 'light');
+            $(this).text('🌙');
+        } else {
+            $('html').attr('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            $(this).text('☀️');
+        }
+    });
+
+    const $portfolioContainer = $('#portfolio-container');
 
     $.getJSON('data/portfolio.json')
         .done(function (data) {
@@ -56,16 +76,15 @@ const $portfolioContainer = $('#portfolio-container');
             );
         });
 
+    const $modal = $('.js-modal');
 
-const $modal = $('#contact-modal');
-
-    $('#open-contact-modal').on('click', function () {
+    $('.js-modal-open').on('click', function () {
         $modal.css('display', 'flex').hide().fadeIn(250);
         $modal.attr('aria-hidden', 'false');
         $('body').css('overflow', 'hidden');
     });
 
-    $modal.on('click', '[data-close]', function () {
+    $modal.on('click', '.js-modal-close', function () {
         closeModal();
     });
 
@@ -84,7 +103,6 @@ const $modal = $('#contact-modal');
             $('#form-status').removeClass('is-success is-error').text('');
         });
     }
-
 
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -137,7 +155,6 @@ const $modal = $('#contact-modal');
         }
     });
 
-
     $('#contact-form').on('submit', function (e) {
         e.preventDefault();
 
@@ -175,15 +192,13 @@ const $modal = $('#contact-modal');
             dataType: 'json',
             timeout: 5000
         })
-        .done(function (response) {
+        .done(function () {
             $status
                 .removeClass('is-error')
                 .addClass('is-success')
                 .text('Спасибо! Ваше сообщение отправлено.');
 
-            setTimeout(function () {
-                closeModal();
-            }, 2000);
+            setTimeout(closeModal, 2000);
         })
         .fail(function () {
             $status
@@ -191,16 +206,14 @@ const $modal = $('#contact-modal');
                 .addClass('is-success')
                 .text('Спасибо! Ваше сообщение отправлено (симуляция).');
 
-            setTimeout(function () {
-                closeModal();
-            }, 2000);
+            setTimeout(closeModal, 2000);
         })
         .always(function () {
             $submit.prop('disabled', false).text('Отправить');
         });
     });
 
-const skillsData = [
+    const skillsData = [
         { name: 'HTML5',              percent: 90 },
         { name: 'CSS3 / SCSS',        percent: 85 },
         { name: 'JavaScript',         percent: 75 },
@@ -269,11 +282,11 @@ const skillsData = [
     function nextSlide() { goTo(currentIndex + 1); }
     function prevSlide() { goTo(currentIndex - 1); }
 
-    $('#skills-next').on('click', function () {
+    $('.js-skills-next').on('click', function () {
         nextSlide();
         restartAutoplay();
     });
-    $('#skills-prev').on('click', function () {
+    $('.js-skills-prev').on('click', function () {
         prevSlide();
         restartAutoplay();
     });
@@ -312,7 +325,7 @@ const skillsData = [
     startAutoplay();
 
     const $navLinks = $('.nav__link');
-    const $sections = $('section[id]'); 
+    const $sections = $('section[id]');
 
     function highlightNav() {
         const scrollPos = $(window).scrollTop() + 100;
@@ -325,7 +338,7 @@ const skillsData = [
 
             if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
                 currentId = $section.attr('id');
-                return false; // break
+                return false;
             }
         });
 
@@ -339,19 +352,7 @@ const skillsData = [
         }
     }
 
-    let scrollTimeout;
-    $(window).on('scroll', function () {
-        if (scrollTimeout) return;
-        scrollTimeout = setTimeout(function () {
-            highlightNav();
-            toggleScrollTopBtn();
-            scrollTimeout = null;
-        }, 100);
-    });
-
-    highlightNav();
-
-    const $scrollTopBtn = $('#scroll-top');
+    const $scrollTopBtn = $('.js-scroll-top');
 
     function toggleScrollTopBtn() {
         if ($(window).scrollTop() > 400) {
@@ -365,4 +366,17 @@ const skillsData = [
         $('html, body').animate({ scrollTop: 0 }, 600);
     });
 
+    let scrollTimeout;
+    $(window).on('scroll', function () {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(function () {
+            highlightNav();
+            toggleScrollTopBtn();
+            scrollTimeout = null;
+        }, 100);
+    });
+
+    highlightNav();
     toggleScrollTopBtn();
+
+});
