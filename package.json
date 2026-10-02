@@ -1,0 +1,25 @@
+{
+  "name": "web_lab",
+  "version": "1.0.0",
+  "description": "📌 ${\\color{#FF69B4}Тема: \\ Jquery}$",
+  "main": "index.js",
+  "scripts": {
+  "sass:dev": "sass --watch scss/main.scss:dist/css/main.css",
+  "build": "sass --no-source-map --style=compressed scss/main.scss:dist/css/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cherep121/Web_lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cherep121/Web_lab/issues"
+  },
+  "homepage": "https://github.com/cherep121/Web_lab#readme",
+  "devDependencies": {
+    "sass": "^1.105.1"
+  }
+}
